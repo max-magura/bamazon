@@ -60,11 +60,12 @@ function startInq() {
       // console.log(chosenProduct)
 
       if (chosenProduct.stock_quantity > parseInt(answer.quantity)){
-        console.log("We got plenty!!")
+        console.log("\n Great! We have enough in stock. For this purchase of " + answer.quantity + " units of " + chosenProduct.product_name + " you owe: $" + answer.quantity*chosenProduct.price)
       
       }
       else {
-        console.log("We ain't got enough.")
+        console.log("\n Unfortunately, we don't have enough of that product. Please choose a new product or lower your quantity. \n")
+        displayProducts()
       }
 
     })
