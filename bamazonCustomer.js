@@ -61,7 +61,15 @@ function startInq() {
 
       if (chosenProduct.stock_quantity > parseInt(answer.quantity)){
         console.log("\n Great! We have enough in stock. For this purchase of " + answer.quantity + " units of " + chosenProduct.product_name + " you owe: $" + answer.quantity*chosenProduct.price)
-      
+        connection.query(
+        "UPDATE products SET stock_quantity = stock_quantity - " + answer.quantity + " WHERE item_id=" + parseInt(answer.itemID),
+        function(error) {
+          if (error) throw err;
+          console.log("\n Successful purchase has been made! See new quantities and make a new purchase: \n ");
+          displayProducts();
+        }
+      );
+        
       }
       else {
         console.log("\n Unfortunately, we don't have enough of that product. Please choose a new product or lower your quantity. \n")
